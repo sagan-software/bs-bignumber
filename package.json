@@ -1,0 +1,23 @@
+{
+	"name": "bs-bignumber",
+	"version": "0.1.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"clean": "bsb -clean-world",
+		"build": "yarn clean && bsb -make-world",
+		"start": "yarn clean && concurrently --raw \"bsb -make-world -w\" \"jest --watchAll\"",
+		"test": "yarn build && jest"
+	},
+	"dependencies": {
+		"bignumber.js": "^7.2.1"
+	},
+	"peerDependencies": {
+		"bs-platform": "^4.0.0"
+	},
+	"devDependencies": {
+		"@glennsl/bs-jest": "^0.4.2",
+		"bs-platform": "^4.0.0",
+		"concurrently": "^3.6.0"
+	}
+}

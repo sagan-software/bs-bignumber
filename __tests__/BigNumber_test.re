@@ -219,3 +219,32 @@ describe("String representation", () =>
     45.6 |> fromFloat |> toExponential |> expect |> toBe("4.56e+1")
   )
 );
+
+describe("JSON", () => {
+  test("decodeString", () =>
+    "10" |> Js.Json.string |> decodeString |. expectString("10")
+  );
+
+  test("decodeFloat", () =>
+    10. |> Js.Json.number |> decodeFloat |. expectString("10")
+  );
+
+  test("decodeInt", () =>
+    10. |> Js.Json.number |> decodeInt |. expectString("10")
+  );
+
+  testAll(
+    "decodeAny",
+    [
+      ("10" |> Js.Json.string, "10"),
+      (10. |> Js.Json.number, "10"),
+      (10.5 |> Js.Json.number, "10.5"),
+    ],
+    ((j, str)) =>
+    j |> decodeAny |. expectString(str)
+  );
+
+  test("encode", () =>
+    10 |> fromInt |> encode |> expect |> toBe(Js.Json.string("10"))
+  );
+});

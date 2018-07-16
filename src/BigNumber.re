@@ -85,3 +85,10 @@ type t;
 [@bs.send] external toFraction : t => (string, string) = "";
 [@bs.send] external toJson : t => string = "toJSON";
 [@bs.send] external toString : t => string = "";
+
+/* JSON */
+let decodeString = Json.Decode.string |> Json.Decode.map(fromString);
+let decodeInt = Json.Decode.(int |> map(fromInt));
+let decodeFloat = Json.Decode.(Json.Decode.float |> map(fromFloat));
+let decodeAny = Json.Decode.(oneOf([decodeString, decodeInt, decodeFloat]));
+let encode = d => d |> toJson |> Json.Encode.string;

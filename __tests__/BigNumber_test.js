@@ -3,6 +3,7 @@
 
 var Jest = require("@glennsl/bs-jest/src/jest.js");
 var Curry = require("bs-platform/lib/js/curry.js");
+var BigNumber = require("../src/BigNumber.js");
 var BignumberJs = require("bignumber.js");
 
 function todo() {
@@ -481,6 +482,42 @@ describe("Instance methods", (function () {
 describe("String representation", (function () {
         return Jest.test("toExponential", (function () {
                       return Jest.Expect[/* toBe */2]("4.56e+1", Jest.Expect[/* expect */0](new BignumberJs(45.6).toExponential()));
+                    }));
+      }));
+
+describe("JSON", (function () {
+        Jest.test("decodeString", (function () {
+                return expectString(BigNumber.decodeString("10"), "10");
+              }));
+        Jest.test("decodeFloat", (function () {
+                return expectString(BigNumber.decodeFloat(10), "10");
+              }));
+        Jest.test("decodeInt", (function () {
+                return expectString(BigNumber.decodeInt(10), "10");
+              }));
+        Jest.testAll("decodeAny", /* :: */[
+              /* tuple */[
+                "10",
+                "10"
+              ],
+              /* :: */[
+                /* tuple */[
+                  10,
+                  "10"
+                ],
+                /* :: */[
+                  /* tuple */[
+                    10.5,
+                    "10.5"
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ], (function (param) {
+                return expectString(BigNumber.decodeAny(param[0]), param[1]);
+              }));
+        return Jest.test("encode", (function () {
+                      return Jest.Expect[/* toBe */2]("10", Jest.Expect[/* expect */0](BigNumber.encode(new BignumberJs(10))));
                     }));
       }));
 

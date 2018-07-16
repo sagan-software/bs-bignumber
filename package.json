@@ -13,10 +13,12 @@
 		"bignumber.js": "^7.2.1"
 	},
 	"peerDependencies": {
+		"@glennsl/bs-json": "^2.0.0",
 		"bs-platform": "^4.0.0"
 	},
 	"devDependencies": {
 		"@glennsl/bs-jest": "^0.4.2",
+		"@glennsl/bs-json": "^2.0.0",
 		"bs-platform": "^4.0.0",
 		"concurrently": "^3.6.0"
 	}

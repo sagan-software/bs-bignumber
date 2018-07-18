@@ -35,7 +35,7 @@ var partial_arg = /* :: */[
   partial_arg_001
 ];
 
-function decodeAny(param) {
+function decode(param) {
   return Json_decode.oneOf(partial_arg, param);
 }
 
@@ -46,6 +46,6 @@ function encode(d) {
 exports.decodeString = decodeString;
 exports.decodeInt = decodeInt;
 exports.decodeFloat = decodeFloat;
-exports.decodeAny = decodeAny;
+exports.decode = decode;
 exports.encode = encode;
 /* bignumber.js Not a pure module */

@@ -78,6 +78,8 @@ type t;
 [@bs.send] external shiftedBy : (t, int) => t = "";
 [@bs.send] external sqrt : t => t = "sqrt";
 
+[@bs.send] external toFloat : t => float = "toNumber";
+
 /* String representation */
 [@bs.send] external toExponential : t => string = "";
 [@bs.send] external toFixed : t => string = "";
@@ -90,5 +92,5 @@ type t;
 let decodeString = Json.Decode.string |> Json.Decode.map(fromString);
 let decodeInt = Json.Decode.(int |> map(fromInt));
 let decodeFloat = Json.Decode.(Json.Decode.float |> map(fromFloat));
-let decodeAny = Json.Decode.(oneOf([decodeString, decodeInt, decodeFloat]));
+let decode = Json.Decode.(oneOf([decodeString, decodeInt, decodeFloat]));
 let encode = d => d |> toJson |> Json.Encode.string;

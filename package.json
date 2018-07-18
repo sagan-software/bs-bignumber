@@ -6,7 +6,8 @@
 	"scripts": {
 		"clean": "bsb -clean-world",
 		"build": "yarn clean && bsb -make-world",
-		"start": "yarn clean && concurrently --raw \"bsb -make-world -w\" \"jest --watchAll\"",
+		"start-bsb": "yarn clean && bsb -make-world -w",
+		"start-test": "jest --watchAll",
 		"test": "yarn build && jest"
 	},
 	"dependencies": {

@@ -10,18 +10,6 @@ function todo() {
   return Jest.pass;
 }
 
-function tableTests1(label, fn, rows) {
-  return Jest.testAll(label, rows, (function (param) {
-                return Jest.Expect[/* toBe */2](param[1], Jest.Expect[/* expect */0](Curry._1(fn, param[0])));
-              }));
-}
-
-function tableTests2(label, fn, rows) {
-  return Jest.testAll(label, rows, (function (param) {
-                return Jest.Expect[/* toBe */2](param[2], Jest.Expect[/* expect */0](Curry._2(fn, param[0], param[1])));
-              }));
-}
-
 function thenString(fn, bn) {
   return Curry._1(fn, bn).toString();
 }
@@ -29,6 +17,30 @@ function thenString(fn, bn) {
 function expectString(bn, str) {
   return Jest.Expect[/* toBe */2](str, Jest.Expect[/* expect */0](bn.toString()));
 }
+
+var zero = new BignumberJs(0);
+
+var one = new BignumberJs(1);
+
+var two = new BignumberJs(2);
+
+var three = new BignumberJs(3);
+
+var four = new BignumberJs(4);
+
+var five = new BignumberJs(5);
+
+var six = new BignumberJs(6);
+
+var seven = new BignumberJs(7);
+
+var eight = new BignumberJs(8);
+
+var nine = new BignumberJs(9);
+
+var ten = new BignumberJs(10);
+
+var twenty = new BignumberJs(20);
 
 describe("Construction", (function () {
         Jest.test("fromString", (function () {
@@ -42,90 +54,235 @@ describe("Construction", (function () {
                     }));
       }));
 
-var two = new BignumberJs(2);
+describe("Maximum", (function () {
+        Jest.test("max", (function () {
+                return Jest.Expect[/* toEqual */12](ten, Jest.Expect[/* expect */0](BignumberJs.max(one, ten, two, nine, three, eight, four, seven, five, six)));
+              }));
+        Jest.test("max2", (function () {
+                return Jest.Expect[/* toEqual */12](four, Jest.Expect[/* expect */0](BignumberJs.max(two, four)));
+              }));
+        Jest.test("max3", (function () {
+                return Jest.Expect[/* toEqual */12](four, Jest.Expect[/* expect */0](BignumberJs.max(two, four, three)));
+              }));
+        Jest.test("max4", (function () {
+                return Jest.Expect[/* toEqual */12](five, Jest.Expect[/* expect */0](BignumberJs.max(two, four, three, five)));
+              }));
+        Jest.test("max5", (function () {
+                return Jest.Expect[/* toEqual */12](six, Jest.Expect[/* expect */0](BignumberJs.max(two, four, three, five, six)));
+              }));
+        return Jest.test("max6", (function () {
+                      return Jest.Expect[/* toEqual */12](seven, Jest.Expect[/* expect */0](BignumberJs.max(two, four, three, five, six, seven)));
+                    }));
+      }));
 
-var three = new BignumberJs(3);
+describe("Minimum", (function () {
+        Jest.test("min", (function () {
+                return Jest.Expect[/* toEqual */12](one, Jest.Expect[/* expect */0](BignumberJs.min(one, ten, two, nine, three, eight, four, seven, five, six)));
+              }));
+        Jest.test("min2", (function () {
+                return Jest.Expect[/* toEqual */12](two, Jest.Expect[/* expect */0](BignumberJs.min(two, four)));
+              }));
+        Jest.test("min3", (function () {
+                return Jest.Expect[/* toEqual */12](two, Jest.Expect[/* expect */0](BignumberJs.min(two, four, three)));
+              }));
+        Jest.test("min4", (function () {
+                return Jest.Expect[/* toEqual */12](two, Jest.Expect[/* expect */0](BignumberJs.min(two, four, three, five)));
+              }));
+        Jest.test("min5", (function () {
+                return Jest.Expect[/* toEqual */12](two, Jest.Expect[/* expect */0](BignumberJs.min(two, four, three, five, six)));
+              }));
+        return Jest.test("min6", (function () {
+                      return Jest.Expect[/* toEqual */12](two, Jest.Expect[/* expect */0](BignumberJs.min(two, four, three, five, six, seven)));
+                    }));
+      }));
 
-var ten = new BignumberJs(10);
-
-var twenty = new BignumberJs(20);
-
-describe("Operations", (function () {
+describe("Addition", (function () {
         Jest.test("plus", (function () {
                 return expectString(ten.plus(ten), "20");
+              }));
+        Jest.test("plusBase", (function () {
+                return expectString(ten.plus(ten, 5), "15");
               }));
         Jest.test("plusFloat", (function () {
                 return expectString(ten.plus(10), "20");
               }));
+        Jest.test("plusFloatBase", (function () {
+                return expectString(ten.plus(10, 5), "15");
+              }));
         Jest.test("plusInt", (function () {
                 return expectString(ten.plus(10), "20");
               }));
+        return Jest.test("plusIntBase", (function () {
+                      return expectString(ten.plus(10, 5), "15");
+                    }));
+      }));
+
+describe("Subtraction", (function () {
         Jest.test("minus", (function () {
                 return expectString(ten.minus(ten), "0");
+              }));
+        Jest.test("minusBase", (function () {
+                return expectString(ten.minus(ten, 5), "5");
               }));
         Jest.test("minusFloat", (function () {
                 return expectString(ten.minus(10), "0");
               }));
+        Jest.test("minusFloatBase", (function () {
+                return expectString(ten.minus(10, 5), "5");
+              }));
         Jest.test("minusInt", (function () {
                 return expectString(ten.minus(10), "0");
               }));
+        return Jest.test("minusIntBase", (function () {
+                      return expectString(ten.minus(10, 5), "5");
+                    }));
+      }));
+
+describe("Multiplication", (function () {
         Jest.test("times", (function () {
                 return expectString(ten.times(ten), "100");
+              }));
+        Jest.test("timesBase", (function () {
+                return expectString(ten.times(ten, 5), "50");
               }));
         Jest.test("timesFloat", (function () {
                 return expectString(ten.times(10), "100");
               }));
+        Jest.test("timesFloatBase", (function () {
+                return expectString(ten.times(10, 5), "50");
+              }));
         Jest.test("timesInt", (function () {
                 return expectString(ten.times(10), "100");
               }));
+        return Jest.test("timesIntBase", (function () {
+                      return expectString(ten.times(10, 5), "50");
+                    }));
+      }));
+
+describe("Division", (function () {
         Jest.test("div", (function () {
                 return expectString(ten.div(two), "5");
+              }));
+        Jest.test("divBase", (function () {
+                return expectString(ten.div(ten, 5), "2");
               }));
         Jest.test("divFloat", (function () {
                 return expectString(ten.div(2), "5");
               }));
+        Jest.test("divFloatBase", (function () {
+                return expectString(ten.div(10, 5), "2");
+              }));
         Jest.test("divInt", (function () {
                 return expectString(ten.div(2), "5");
               }));
+        return Jest.test("divIntBase", (function () {
+                      return expectString(ten.div(10, 5), "2");
+                    }));
+      }));
+
+describe("Integer division", (function () {
         Jest.test("idiv", (function () {
-                return expectString(ten.idiv(new BignumberJs("9")), "1");
+                return expectString(ten.idiv(nine), "1");
+              }));
+        Jest.test("idivBase", (function () {
+                return expectString(ten.idiv(ten, 3), "3");
               }));
         Jest.test("idivFloat", (function () {
                 return expectString(ten.idiv(9), "1");
               }));
+        Jest.test("idivFloatBase", (function () {
+                return expectString(ten.idiv(10, 3), "3");
+              }));
         Jest.test("idivInt", (function () {
                 return expectString(ten.idiv(9), "1");
               }));
+        return Jest.test("idivIntBase", (function () {
+                      return expectString(ten.idiv(10, 3), "3");
+                    }));
+      }));
+
+describe("Modulo", (function () {
         Jest.test("mod_", (function () {
                 return expectString(ten.mod(three), "1");
+              }));
+        Jest.test("modBase", (function () {
+                return expectString(ten.mod(four, 5), "2");
               }));
         Jest.test("modFloat", (function () {
                 return expectString(ten.mod(3), "1");
               }));
+        Jest.test("modFloatBase", (function () {
+                return expectString(ten.mod(4, 5), "2");
+              }));
         Jest.test("modInt", (function () {
                 return expectString(ten.mod(3), "1");
               }));
+        return Jest.test("modIntBase", (function () {
+                      return expectString(ten.mod(4, 5), "2");
+                    }));
+      }));
+
+describe("Exponents", (function () {
         Jest.test("pow", (function () {
-                return expectString(new BignumberJs("3").pow(new BignumberJs("2")), "9");
+                return expectString(three.pow(two), "9");
+              }));
+        Jest.test("powMod", (function () {
+                return expectString(three.pow(two, 3), "0");
               }));
         Jest.test("powFloat", (function () {
                 return expectString(new BignumberJs(3).pow(2), "9");
               }));
-        return Jest.test("powInt", (function () {
-                      return expectString(new BignumberJs(3).pow(2), "9");
+        Jest.test("powFloatMod", (function () {
+                return expectString(three.pow(2, 3), "0");
+              }));
+        Jest.test("powInt", (function () {
+                return expectString(new BignumberJs(3).pow(2), "9");
+              }));
+        return Jest.test("powIntMod", (function () {
+                      return expectString(three.pow(2, 3), "0");
                     }));
       }));
 
-describe("Comparisons", (function () {
+describe("Equal (==)", (function () {
         Jest.test("eq", (function () {
                 return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(ten)));
+              }));
+        Jest.test("eqBase", (function () {
+                return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(twenty, 5)));
               }));
         Jest.test("eqFloat", (function () {
                 return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(10)));
               }));
+        Jest.test("eqFloatBase", (function () {
+                return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(20, 5)));
+              }));
         Jest.test("eqInt", (function () {
                 return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(10)));
               }));
+        return Jest.test("eqIntBase", (function () {
+                      return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](ten.eq(20, 5)));
+                    }));
+      }));
+
+function tableTests1(label, fn, rows) {
+  return Jest.testAll(label, rows, (function (param) {
+                return Jest.Expect[/* toBe */2](param[1], Jest.Expect[/* expect */0](Curry._1(fn, param[0])));
+              }));
+}
+
+function tableTests2(label, fn, rows) {
+  return Jest.testAll(label, rows, (function (param) {
+                return Jest.Expect[/* toBe */2](param[2], Jest.Expect[/* expect */0](Curry._2(fn, param[0], param[1])));
+              }));
+}
+
+function tableTests3(label, fn, rows) {
+  return Jest.testAll(label, rows, (function (param) {
+                return Jest.Expect[/* toBe */2](param[3], Jest.Expect[/* expect */0](Curry._3(fn, param[0], param[1], param[2])));
+              }));
+}
+
+describe("Greater than (>)", (function () {
         tableTests2("gt", (function (prim, prim$1) {
                 return prim.gt(prim$1);
               }), /* :: */[
@@ -150,6 +307,33 @@ describe("Comparisons", (function () {
                 ]
               ]
             ]);
+        tableTests3("gtBase", (function (prim, prim$1, prim$2) {
+                return prim.gt(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                two,
+                3,
+                true
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  ten,
+                  3,
+                  false
+                ],
+                /* :: */[
+                  /* tuple */[
+                    ten,
+                    ten,
+                    3,
+                    true
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ]);
         tableTests2("gtFloat", (function (prim, prim$1) {
                 return prim.gt(prim$1);
               }), /* :: */[
@@ -169,6 +353,33 @@ describe("Comparisons", (function () {
                     ten,
                     10,
                     false
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ]);
+        tableTests3("gtFloatBase", (function (prim, prim$1, prim$2) {
+                return prim.gt(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                2,
+                3,
+                true
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  2,
+                  3,
+                  false
+                ],
+                /* :: */[
+                  /* tuple */[
+                    ten,
+                    10,
+                    3,
+                    true
                   ],
                   /* [] */0
                 ]
@@ -198,6 +409,36 @@ describe("Comparisons", (function () {
                 ]
               ]
             ]);
+        return tableTests3("gtIntBase", (function (prim, prim$1, prim$2) {
+                      return prim.gt(prim$1, prim$2);
+                    }), /* :: */[
+                    /* tuple */[
+                      ten,
+                      2,
+                      3,
+                      true
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        two,
+                        2,
+                        3,
+                        false
+                      ],
+                      /* :: */[
+                        /* tuple */[
+                          ten,
+                          10,
+                          3,
+                          true
+                        ],
+                        /* [] */0
+                      ]
+                    ]
+                  ]);
+      }));
+
+describe("Greater than or equal to (>=)", (function () {
         tableTests2("gte", (function (prim, prim$1) {
                 return prim.gte(prim$1);
               }), /* :: */[
@@ -215,6 +456,25 @@ describe("Comparisons", (function () {
                 /* [] */0
               ]
             ]);
+        tableTests3("gteBase", (function (prim, prim$1, prim$2) {
+                return prim.gte(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                ten,
+                3,
+                true
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  ten,
+                  3,
+                  false
+                ],
+                /* [] */0
+              ]
+            ]);
         tableTests2("gtFloat", (function (prim, prim$1) {
                 return prim.gte(prim$1);
               }), /* :: */[
@@ -227,6 +487,25 @@ describe("Comparisons", (function () {
                 /* tuple */[
                   two,
                   10,
+                  false
+                ],
+                /* [] */0
+              ]
+            ]);
+        tableTests3("gteFloatBase", (function (prim, prim$1, prim$2) {
+                return prim.gte(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                10,
+                3,
+                true
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  10,
+                  3,
                   false
                 ],
                 /* [] */0
@@ -249,6 +528,28 @@ describe("Comparisons", (function () {
                 /* [] */0
               ]
             ]);
+        return tableTests3("gteIntBase", (function (prim, prim$1, prim$2) {
+                      return prim.gte(prim$1, prim$2);
+                    }), /* :: */[
+                    /* tuple */[
+                      ten,
+                      10,
+                      3,
+                      true
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        two,
+                        10,
+                        3,
+                        false
+                      ],
+                      /* [] */0
+                    ]
+                  ]);
+      }));
+
+describe("Less than (<)", (function () {
         tableTests2("lt", (function (prim, prim$1) {
                 return prim.lt(prim$1);
               }), /* :: */[
@@ -273,6 +574,33 @@ describe("Comparisons", (function () {
                 ]
               ]
             ]);
+        tableTests3("ltBase", (function (prim, prim$1, prim$2) {
+                return prim.lt(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                two,
+                3,
+                false
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  ten,
+                  3,
+                  true
+                ],
+                /* :: */[
+                  /* tuple */[
+                    ten,
+                    ten,
+                    3,
+                    false
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ]);
         tableTests2("ltFloat", (function (prim, prim$1) {
                 return prim.lt(prim$1);
               }), /* :: */[
@@ -291,6 +619,33 @@ describe("Comparisons", (function () {
                   /* tuple */[
                     ten,
                     10,
+                    false
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ]);
+        tableTests3("ltFloatBase", (function (prim, prim$1, prim$2) {
+                return prim.lt(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                2,
+                3,
+                false
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  10,
+                  3,
+                  true
+                ],
+                /* :: */[
+                  /* tuple */[
+                    ten,
+                    10,
+                    3,
                     false
                   ],
                   /* [] */0
@@ -321,6 +676,36 @@ describe("Comparisons", (function () {
                 ]
               ]
             ]);
+        return tableTests3("ltIntBase", (function (prim, prim$1, prim$2) {
+                      return prim.lt(prim$1, prim$2);
+                    }), /* :: */[
+                    /* tuple */[
+                      ten,
+                      2,
+                      3,
+                      false
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        two,
+                        10,
+                        3,
+                        true
+                      ],
+                      /* :: */[
+                        /* tuple */[
+                          ten,
+                          10,
+                          3,
+                          false
+                        ],
+                        /* [] */0
+                      ]
+                    ]
+                  ]);
+      }));
+
+describe("Less than or equal to (<=)", (function () {
         tableTests2("lte", (function (prim, prim$1) {
                 return prim.lte(prim$1);
               }), /* :: */[
@@ -338,7 +723,26 @@ describe("Comparisons", (function () {
                 /* [] */0
               ]
             ]);
-        tableTests2("ltFloat", (function (prim, prim$1) {
+        tableTests3("lteBase", (function (prim, prim$1, prim$2) {
+                return prim.lte(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                ten,
+                3,
+                false
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  ten,
+                  3,
+                  true
+                ],
+                /* [] */0
+              ]
+            ]);
+        tableTests2("lteFloat", (function (prim, prim$1) {
                 return prim.lte(prim$1);
               }), /* :: */[
               /* tuple */[
@@ -355,18 +759,56 @@ describe("Comparisons", (function () {
                 /* [] */0
               ]
             ]);
-        return tableTests2("ltInt", (function (prim, prim$1) {
-                      return prim.lte(prim$1);
+        tableTests3("lteFloatBase", (function (prim, prim$1, prim$2) {
+                return prim.lte(prim$1, prim$2);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                10,
+                3,
+                false
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  10,
+                  3,
+                  true
+                ],
+                /* [] */0
+              ]
+            ]);
+        tableTests2("lteInt", (function (prim, prim$1) {
+                return prim.lte(prim$1);
+              }), /* :: */[
+              /* tuple */[
+                ten,
+                10,
+                true
+              ],
+              /* :: */[
+                /* tuple */[
+                  two,
+                  10,
+                  true
+                ],
+                /* [] */0
+              ]
+            ]);
+        return tableTests3("lteIntBase", (function (prim, prim$1, prim$2) {
+                      return prim.lte(prim$1, prim$2);
                     }), /* :: */[
                     /* tuple */[
                       ten,
                       10,
-                      true
+                      3,
+                      false
                     ],
                     /* :: */[
                       /* tuple */[
                         two,
                         10,
+                        3,
                         true
                       ],
                       /* [] */0
@@ -479,7 +921,19 @@ describe("Instance methods", (function () {
                     }));
       }));
 
-describe("String representation", (function () {
+describe("Decimal places", (function () {
+        Jest.test("getDecimalPlaces", (function () {
+                return Jest.Expect[/* toEqual */12](2, Jest.Expect[/* expect */0](new BignumberJs(1234.56).decimalPlaces()));
+              }));
+        Jest.test("setDecimalPlaces", (function () {
+                return Jest.Expect[/* toEqual */12]("1234.6", Jest.Expect[/* expect */0](new BignumberJs(1234.56).decimalPlaces(1).toString()));
+              }));
+        return Jest.test("setDecimalPlacesRm", (function () {
+                      return Jest.Expect[/* toEqual */12]("1234.5", Jest.Expect[/* expect */0](new BignumberJs(1234.56).decimalPlaces(1, /* RoundDown */1).toString()));
+                    }));
+      }));
+
+describe("To exponential", (function () {
         return Jest.test("toExponential", (function () {
                       return Jest.Expect[/* toBe */2]("4.56e+1", Jest.Expect[/* expect */0](new BignumberJs(45.6).toExponential()));
                     }));
@@ -495,7 +949,7 @@ describe("JSON", (function () {
         Jest.test("decodeInt", (function () {
                 return expectString(BigNumber.decodeInt(10), "10");
               }));
-        Jest.testAll("decodeAny", /* :: */[
+        Jest.testAll("decode", /* :: */[
               /* tuple */[
                 "10",
                 "10"
@@ -514,20 +968,47 @@ describe("JSON", (function () {
                 ]
               ]
             ], (function (param) {
-                return expectString(BigNumber.decodeAny(param[0]), param[1]);
+                return expectString(BigNumber.decode(param[0]), param[1]);
               }));
         return Jest.test("encode", (function () {
                       return Jest.Expect[/* toBe */2]("10", Jest.Expect[/* expect */0](BigNumber.encode(new BignumberJs(10))));
                     }));
       }));
 
+describe("Config", (function () {
+        Jest.test("decimalPlaces", (function () {
+                BigNumber.config(4, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* () */0);
+                return Jest.Expect[/* toEqual */12]("3.3333", Jest.Expect[/* expect */0](ten.div(three).toString()));
+              }));
+        Jest.test("exponentialAt", (function () {
+                BigNumber.config(undefined, undefined, 2, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* () */0);
+                return Jest.Expect[/* toEqual */12]("1.23e+2", Jest.Expect[/* expect */0](new BignumberJs(123).toString()));
+              }));
+        return Jest.test("exponentialAtArray", (function () {
+                      BigNumber.config(undefined, undefined, undefined, /* array */[
+                            -7,
+                            20
+                          ], undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, /* () */0);
+                      return Jest.Expect[/* toEqual */12]("1.23e-7", Jest.Expect[/* expect */0](new BignumberJs(0.000000123).toString()));
+                    }));
+      }));
+
 exports.todo = todo;
-exports.tableTests1 = tableTests1;
-exports.tableTests2 = tableTests2;
 exports.thenString = thenString;
 exports.expectString = expectString;
+exports.zero = zero;
+exports.one = one;
 exports.two = two;
 exports.three = three;
+exports.four = four;
+exports.five = five;
+exports.six = six;
+exports.seven = seven;
+exports.eight = eight;
+exports.nine = nine;
 exports.ten = ten;
 exports.twenty = twenty;
-/*  Not a pure module */
+exports.tableTests1 = tableTests1;
+exports.tableTests2 = tableTests2;
+exports.tableTests3 = tableTests3;
+/* zero Not a pure module */

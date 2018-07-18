@@ -2,7 +2,76 @@
 'use strict';
 
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var BignumberJs = require("bignumber.js");
+
+function rmToJs(param) {
+  return param + 0 | 0;
+}
+
+function rmFromJs(param) {
+  if (param <= 9 && 0 <= param) {
+    return param - 0 | 0;
+  }
+  
+}
+
+var Format = /* module */[];
+
+var Config = /* module */[];
+
+function config(decimalPlaces, roundingMode, exponentialAt, exponentialAtArray, range, rangeArray, crypto, moduloMode, powPrecision, alphabet, $staropt$star, $staropt$star$1, $staropt$star$2, $staropt$star$3, $staropt$star$4, $staropt$star$5, _) {
+  var decimalSeparator = $staropt$star !== undefined ? $staropt$star : ".";
+  var groupSeparator = $staropt$star$1 !== undefined ? $staropt$star$1 : ",";
+  var groupSize = $staropt$star$2 !== undefined ? $staropt$star$2 : 3;
+  var secondaryGroupSize = $staropt$star$3 !== undefined ? $staropt$star$3 : 0;
+  var fractionGroupSeparator = $staropt$star$4 !== undefined ? $staropt$star$4 : " ";
+  var fractionGroupSize = $staropt$star$5 !== undefined ? $staropt$star$5 : 0;
+  var format = {
+    decimalSeparator: decimalSeparator,
+    groupSeparator: groupSeparator,
+    groupSize: groupSize,
+    secondaryGroupSize: secondaryGroupSize,
+    fractionGroupSeparator: fractionGroupSeparator,
+    fractionGroupSize: fractionGroupSize
+  };
+  var tmp = {
+    FORMAT: format
+  };
+  if (decimalPlaces) {
+    tmp.DECIMAL_PLACES = Js_primitive.valFromOption(decimalPlaces);
+  }
+  if (roundingMode) {
+    tmp.ROUNDING_MODE = Js_primitive.valFromOption(roundingMode);
+  }
+  if (exponentialAt) {
+    tmp.EXPONENTIAL_AT = Js_primitive.valFromOption(exponentialAt);
+  }
+  if (exponentialAtArray) {
+    tmp.EXPONENTIAL_AT = Js_primitive.valFromOption(exponentialAtArray);
+  }
+  if (range) {
+    tmp.RANGE = Js_primitive.valFromOption(range);
+  }
+  if (rangeArray) {
+    tmp.RANGE = Js_primitive.valFromOption(rangeArray);
+  }
+  if (crypto) {
+    tmp.CRYPTO = Js_primitive.valFromOption(crypto);
+  }
+  if (moduloMode) {
+    tmp.MODULO_MODE = Js_primitive.valFromOption(moduloMode);
+  }
+  if (powPrecision) {
+    tmp.POW_PRECISION = Js_primitive.valFromOption(powPrecision);
+  }
+  if (alphabet) {
+    tmp.ALPHABET = Js_primitive.valFromOption(alphabet);
+  }
+  var cfg = tmp;
+  BignumberJs.config(cfg);
+  return /* () */0;
+}
 
 function decodeString(param) {
   return Json_decode.map((function (prim) {
@@ -43,6 +112,11 @@ function encode(d) {
   return d.toJSON();
 }
 
+exports.rmToJs = rmToJs;
+exports.rmFromJs = rmFromJs;
+exports.Format = Format;
+exports.Config = Config;
+exports.config = config;
 exports.decodeString = decodeString;
 exports.decodeInt = decodeInt;
 exports.decodeFloat = decodeFloat;

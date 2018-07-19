@@ -4,7 +4,7 @@
 var Jest = require("@glennsl/bs-jest/src/jest.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var BigNumber = require("../src/BigNumber.js");
-var BignumberJs = require("bignumber.js");
+var BignumberJs = require("bignumber.js/bignumber.js");
 
 function todo() {
   return Jest.pass;

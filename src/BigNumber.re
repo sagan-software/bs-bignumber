@@ -61,7 +61,8 @@ module Config = {
   };
 };
 
-[@bs.module "bignumber.js"] external config_ : Config.t => unit = "config";
+[@bs.module "bignumber.js/bignumber.js"]
+external config_ : Config.t => unit = "config";
 
 let config =
     (
@@ -111,30 +112,44 @@ let config =
   config_(cfg);
 };
 
-[@bs.module "bignumber.js"] external isBigNumber : 'any => bool = "";
-[@bs.module "bignumber.js"] external random : unit => t = "";
-[@bs.module "bignumber.js"] external randomDp : int => t = "";
+[@bs.module "bignumber.js/bignumber.js"]
+external isBigNumber : 'any => bool = "";
+[@bs.module "bignumber.js/bignumber.js"] external random : unit => t = "";
+[@bs.module "bignumber.js/bignumber.js"] external randomDp : int => t = "";
 
 /* Maximum */
-[@bs.module "bignumber.js"] [@bs.splice] external max : array(t) => t = "";
-[@bs.module "bignumber.js"] external max2 : (t, t) => t = "max";
-[@bs.module "bignumber.js"] external max3 : (t, t, t) => t = "max";
-[@bs.module "bignumber.js"] external max4 : (t, t, t, t) => t = "max";
-[@bs.module "bignumber.js"] external max5 : (t, t, t, t, t) => t = "max";
-[@bs.module "bignumber.js"] external max6 : (t, t, t, t, t, t) => t = "max";
+[@bs.module "bignumber.js/bignumber.js"] [@bs.splice]
+external max : array(t) => t = "";
+[@bs.module "bignumber.js/bignumber.js"] external max2 : (t, t) => t = "max";
+[@bs.module "bignumber.js/bignumber.js"]
+external max3 : (t, t, t) => t = "max";
+[@bs.module "bignumber.js/bignumber.js"]
+external max4 : (t, t, t, t) => t = "max";
+[@bs.module "bignumber.js/bignumber.js"]
+external max5 : (t, t, t, t, t) => t = "max";
+[@bs.module "bignumber.js/bignumber.js"]
+external max6 : (t, t, t, t, t, t) => t = "max";
 
 /* Minimum */
-[@bs.module "bignumber.js"] [@bs.splice] external min : array(t) => t = "";
-[@bs.module "bignumber.js"] external min2 : (t, t) => t = "min";
-[@bs.module "bignumber.js"] external min3 : (t, t, t) => t = "min";
-[@bs.module "bignumber.js"] external min4 : (t, t, t, t) => t = "min";
-[@bs.module "bignumber.js"] external min5 : (t, t, t, t, t) => t = "min";
-[@bs.module "bignumber.js"] external min6 : (t, t, t, t, t, t) => t = "min";
+[@bs.module "bignumber.js/bignumber.js"] [@bs.splice]
+external min : array(t) => t = "";
+[@bs.module "bignumber.js/bignumber.js"] external min2 : (t, t) => t = "min";
+[@bs.module "bignumber.js/bignumber.js"]
+external min3 : (t, t, t) => t = "min";
+[@bs.module "bignumber.js/bignumber.js"]
+external min4 : (t, t, t, t) => t = "min";
+[@bs.module "bignumber.js/bignumber.js"]
+external min5 : (t, t, t, t, t) => t = "min";
+[@bs.module "bignumber.js/bignumber.js"]
+external min6 : (t, t, t, t, t, t) => t = "min";
 
 /* Construction */
-[@bs.module] [@bs.new] external fromString : string => t = "bignumber.js";
-[@bs.module] [@bs.new] external fromFloat : float => t = "bignumber.js";
-[@bs.module] [@bs.new] external fromInt : int => t = "bignumber.js";
+[@bs.module] [@bs.new]
+external fromString : string => t = "bignumber.js/bignumber.js";
+[@bs.module] [@bs.new]
+external fromFloat : float => t = "bignumber.js/bignumber.js";
+[@bs.module] [@bs.new]
+external fromInt : int => t = "bignumber.js/bignumber.js";
 
 /* Addition */
 [@bs.send] external plus : (t, t) => t = "";

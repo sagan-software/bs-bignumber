@@ -4,7 +4,7 @@
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
-var BignumberJs = require("bignumber.js");
+var BignumberJs = require("bignumber.js/bignumber.js");
 
 function rmToJs(param) {
   return param + 0 | 0;
@@ -133,4 +133,4 @@ exports.decodeInt = decodeInt;
 exports.decodeFloat = decodeFloat;
 exports.decode = decode;
 exports.encode = encode;
-/* bignumber.js Not a pure module */
+/* bignumber.js/bignumber.js Not a pure module */

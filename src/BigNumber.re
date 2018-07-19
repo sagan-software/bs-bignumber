@@ -47,7 +47,7 @@ module Config = {
     [@bs.optional] [@bs.as "RANGE"]
     range: int,
     [@bs.optional] [@bs.as "RANGE"]
-    rangeArray: int,
+    rangeArray: array(int),
     [@bs.optional] [@bs.as "CRYPTO"]
     crypto: bool,
     [@bs.optional] [@bs.as "MODULO_MODE"]
@@ -296,6 +296,18 @@ external toFormatRm : (t, [@bs.as {json|null|json}] _, int) => string =
 [@bs.send] external toStringBase : (t, int) => string = "";
 
 [@bs.send] external toFloat : t => float = "toNumber";
+
+/* Compared to */
+[@bs.send] external comparedTo_ : t => Js.Nullable.t(int) = "comparedTo";
+[@bs.send]
+external comparedToBase_ : (t, base) => Js.Nullable.t(int) = "comparedTo";
+let comparedTo = t =>
+  t |. comparedTo_ |. Js.Nullable.toOption |. Belt.Option.getWithDefault(0);
+let comparedToBase = (t, base) =>
+  t
+  |. comparedToBase_(base)
+  |. Js.Nullable.toOption
+  |. Belt.Option.getWithDefault(0);
 
 /* JSON */
 let decodeString = Json.Decode.string |> Json.Decode.map(fromString);
